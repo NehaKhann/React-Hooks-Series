@@ -29,13 +29,22 @@ const ArrayuseState = () => {
   const clearData = () => {
     setbiodata([]);
   };
+  const removeElement = (id) => {
+    // alert(id);
+    const newArray = biodata.filter((currentElement)=> currentElement.id!==id)
+    setbiodata(newArray);
+  };
   return (
     <>
       <h1>Students Record</h1>
       {biodata.map((currentValue) => {
         return (
           <h1 key={currentValue.id}>
-            Name : {currentValue.name} Department: {currentValue.depart}
+            Name : {currentValue.name}
+            Department: {currentValue.depart}
+            <button onClick={() => removeElement(currentValue.id)}>
+              Remove
+            </button>
           </h1>
         );
       })}
