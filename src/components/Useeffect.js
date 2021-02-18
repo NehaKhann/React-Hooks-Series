@@ -10,8 +10,11 @@ const Useeffect = () => {
         document.title = `Messages`;
       }
  
-  },)
-//   alert("hello after use Effect Hook ")
+  },[state])
+  useEffect(()=>{
+    console.log("hello from second use Effect hook");
+  },[])
+  alert("hello after use Effect Hook ")
   return (
     <div>
       <h1>{state}</h1>

@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-
 // import App from './App';
 
 // import Hooksrules from "./components/hooksrules"
@@ -10,11 +8,12 @@ import './index.css';
 // import ObjectuseState from "./components/ObjectuseState"
 // import Shortcircuit from "./components/Shortcircuit"
 // import Registrationform from "./components/Registrationform"
-import Useeffect from "./components/Useeffect"
-
+// import Useeffect from "./components/Useeffect"
+// import Resizewindow  from "./components/Resizewindow"
+import Api  from "./components/Api"
 ReactDOM.render(
 
-<Useeffect/>
+<Api />
 
   ,
   document.getElementById('root')
