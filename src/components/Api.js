@@ -1,40 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import Usersdata from "../components/Usersdata";
 
 const Api = () => {
-  const [users, setusers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [loading, setloading] = useState(true);
 
-  const githubUsers = async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    setusers(await response.json());
-    // console.log(users);
+  const getUsers = async () => {
+    try {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      setloading(false);
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.log(`Error message is ${error}`);
+      setloading(false);
+    }
   };
   useEffect(() => {
-    githubUsers();
+    getUsers();
   }, []);
-  return (
-    <div className="container-fluid mt-5">
-      <h1 className="text-center"> USERS</h1>
-      <div className="row text-center">
-        {users.map((currentElement) => {
-          return (
-            
-              <div  className="col-10 col-md-4 mt-5" key={currentElement.id}>
-                <div className="card p-2">
-                  <div className="card-body">
-                    <h4 className="card-title">{currentElement.name}</h4>
-                    <p className="card-text"> Email : {currentElement.email}</p>
-                    <p className="card-text"> City : {currentElement.address.city}</p>
-                    <p className="card-text"> Street : {currentElement.address.street}</p>
-                    <p className="card-text"> Company : {currentElement.company.name}</p>
-                  </div>
-                </div>
-              </div>
-            
-          );
-        })}
-      </div>
-    </div>
-  );
+  if (loading) {
+    return <Loading />;
+  }
+  return <Usersdata users={users} />;
 };
 
 export default Api;
